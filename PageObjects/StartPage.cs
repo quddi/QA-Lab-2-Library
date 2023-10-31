@@ -12,8 +12,10 @@ public class StartPage : BasePage
         _registerButton = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a"));
     }
 
-    public void GoToRegistrationPage()
+    public RegistrationPage GoToRegistrationPage()
     {
         _registerButton.Click();
+
+        return new RegistrationPage(_driver);
     }
 }
