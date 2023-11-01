@@ -6,30 +6,36 @@ namespace Tests;
 
 public class StartPageTest : BaseTest
 {
+    private const string ExpectedEmailExistenceErrorMessage = "The specified email already exists";
+
     [Test]
-    public void Test()
+    public async Task ExistedEmailRegistrationTest()
     {
         var startPage = new StartPage(_webDriver!);
 
         var registrationPage = startPage.GoToRegistrationPage();
-
-        Thread.Sleep(3000);
 
         var gender = (Gender)Enum.GetValues(typeof(Gender)).GetRandom();
 
         registrationPage.SetGender(gender);
 
         registrationPage.SetCredentials(
-            Extensions.GetRandomString(6),
-            Extensions.GetRandomString(6),
-            Extensions.GetRandomEmail());
+            firstName: Extensions.GetRandomString(6),
+            lastName: Extensions.GetRandomString(6),
+            email: "alemkhf12@gmail.com");
 
         var password = Extensions.GetRandomString(6);
 
         registrationPage.SetPassword(password, password);
 
-        Thread.Sleep(10000);
+        await Task.Delay(TimeSpan.FromSeconds(2));
 
-        Assert.Pass();
+        registrationPage.ClickRegisterButton();
+
+        await Task.Delay(TimeSpan.FromSeconds(2));
+
+        var actualEmailExistenceErrorMessage = registrationPage.GetEmailExistenceErrorMessage();
+
+        Assert.That(() => actualEmailExistenceErrorMessage == ExpectedEmailExistenceErrorMessage);
     }
 }

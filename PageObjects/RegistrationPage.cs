@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using QA_Lab_2_Library;
 
 namespace PageObjects;
 
@@ -11,6 +12,7 @@ public class RegistrationPage : BasePage
     private IWebElement _emailInputField;
     private IWebElement _passwordInputField;
     private IWebElement _passwordConfirmationInputField;
+    private IWebElement _registerButton;
 
     public RegistrationPage(IWebDriver driver) : base(driver) 
     {
@@ -21,6 +23,7 @@ public class RegistrationPage : BasePage
         _emailInputField = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/form/div/div[2]/div[2]/div[2]/div[4]/input"));
         _passwordInputField = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/form/div/div[2]/div[3]/div[2]/div[1]/input"));
         _passwordConfirmationInputField = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/form/div/div[2]/div[3]/div[2]/div[2]/input"));
+        _registerButton = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/form/div/div[2]/div[4]/input"));
     }
 
     public void SetGender(Gender gender)
@@ -46,6 +49,27 @@ public class RegistrationPage : BasePage
     { 
         _passwordInputField.SendKeys(password);
         _passwordConfirmationInputField.SendKeys(confirmationPassword);
+    }
+
+    public CabinetPage? ClickRegisterButton()
+    {
+        _registerButton.Click();
+
+        return null;
+    }
+
+    public string? GetEmailExistenceErrorMessage()
+    {
+        try 
+        {
+            var element = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/form/div/div[2]/div[1]/div/ul/li"));
+
+            return element.Text;
+        }
+        catch 
+        { 
+            return null; 
+        }
     }
 }
 
