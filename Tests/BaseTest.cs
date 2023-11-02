@@ -8,7 +8,7 @@ public class BaseTest
 {
     protected IWebDriver? _webDriver;
     
-    private const string Url = "https://demowebshop.tricentis.com";
+    protected const string StartPageUrl = "https://demowebshop.tricentis.com/";
     
     [SetUp]
     public void SetUp()
@@ -16,7 +16,7 @@ public class BaseTest
         _webDriver = new ChromeDriver();
         
         _webDriver.Manage().Window.Maximize();
-        _webDriver.Navigate().GoToUrl(Url);
+        _webDriver.Navigate().GoToUrl(StartPageUrl);
     }
 
     [TearDown]

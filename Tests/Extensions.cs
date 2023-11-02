@@ -6,7 +6,7 @@ public static class Extensions
 {
     private static readonly Random Random = new();
     private static readonly StringBuilder StringBuilder = new();
-    private static readonly string[] Domains = { "gmail.com", "yahoo.com", "hotmail.com", "mail.ru", "yandex.ru" };
+    private static readonly string[] Domains = { "gmail.com", "yahoo.com", "hotmail.com" };
     private static readonly IList<char> Chars = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
 
     public static string GetRandomEmail()

@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using QA_Lab_2_Library;
 
 namespace PageObjects;
 
@@ -51,11 +50,15 @@ public class RegistrationPage : BasePage
         _passwordConfirmationInputField.SendKeys(confirmationPassword);
     }
 
-    public CabinetPage? ClickRegisterButton()
+    public RegistrationPassedPage? ClickRegisterButton()
     {
+        var previousWindowHandle = _driver.Url;
+
         _registerButton.Click();
 
-        return null;
+        var newWindowHandle = _driver.Url;
+
+        return previousWindowHandle == newWindowHandle ? null : new RegistrationPassedPage(_driver);
     }
 
     public string? GetEmailExistenceErrorMessage()
@@ -69,6 +72,20 @@ public class RegistrationPage : BasePage
         catch 
         { 
             return null; 
+        }
+    }
+
+    public string? GetDifferentPasswordsErrorMessage()
+    {
+        try
+        {
+            var element = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/form/div/div[2]/div[3]/div[2]/div[2]/span[2]/span"));
+
+            return element.Text;
+        }
+        catch
+        {
+            return null;
         }
     }
 }
