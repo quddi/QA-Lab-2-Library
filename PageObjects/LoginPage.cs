@@ -43,4 +43,46 @@ public class LoginPage : BasePage
 
         return new StartPage(_driver);
     }
+
+    public string? GetUnsuccessLoginMessage()
+    {
+        try
+        {
+            var element = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/div/div[2]/div[1]/div[2]/div[2]/form/div[1]/div/span"));
+
+            return element.Text;
+        }
+        catch 
+        { 
+            return null; 
+        }
+    }
+
+    public string? GetNoCustomerFoundLoginMessage()
+    {
+        try
+        {
+            var element = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/div/div[2]/div[1]/div[2]/div[2]/form/div[1]/div/ul/li"));
+
+            return element.Text;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public string? GetIncorrectCredentialsMessage()
+    {
+        try
+        {
+            var element = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div[2]/div/div[2]/div[1]/div[2]/div[2]/form/div[1]/div/ul/li"));
+
+            return element.Text;
+        }
+        catch
+        {
+            return null;
+        }
+    }
 }

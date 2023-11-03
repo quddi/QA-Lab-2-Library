@@ -22,7 +22,7 @@ public class StartPage : BasePage
         return new RegistrationPage(_driver);
     }
 
-    public LoginPage GoToAuthorizationPage()
+    public LoginPage GoToLoginPage()
     {
         _loginButton.Click(); 
         

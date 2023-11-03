@@ -5,17 +5,21 @@ namespace Tests;
 
 public class LoginTest : BaseTest
 {
-    private const string ExistingFirstName = "3dtj9u";
-    private const string ExistingLastName = "dmjtp7";
     private const string ExistingEmail = "nyqug9@yahoo.com";
     private const string ExistingPassword = "extbp6";
+    private readonly string NonExistentEmail = ExistingEmail + "_incorrect";
+    private readonly string IncorrectPassword = ExistingPassword + "_incorrect";
+
+    private const string UnsuccessMessageText = "Login was unsuccessful. Please correct the errors and try again.";
+    private const string NoCustomerMessageText = "No customer account found";
+    private const string IncorrectCredentialsMessageText = "The credentials provided are incorrect";
 
     [Test] 
     public async Task NormalLoginTest()
     {
         //Arrange
         var startPage = new StartPage(_webDriver!);
-        var loginPage = startPage.GoToAuthorizationPage();
+        var loginPage = startPage.GoToLoginPage();
 
         //Act
         loginPage.SetEmail(ExistingEmail);
@@ -31,5 +35,47 @@ public class LoginTest : BaseTest
         //Assert
         Assert.That(() => actualUrl == StartPageUrl);
         Assert.That(() => actualEmailText == ExistingEmail);
+    }
+
+    [Test]
+    public async Task WrongEmailLoginTest()
+    {
+        //Arrange
+        var startPage = new StartPage(_webDriver!);
+        var loginPage = startPage.GoToLoginPage();
+
+        //Act
+        loginPage.ClickLoginButton();
+        await Task.Delay(TimeSpan.FromSeconds(2));
+
+        var actualUnsuccessMessageText = loginPage.GetUnsuccessLoginMessage();
+        var actualNoCustomerMessageText = loginPage.GetNoCustomerFoundLoginMessage();
+
+        //Assert
+        Assert.That(() => actualUnsuccessMessageText == UnsuccessMessageText);
+        Assert.That(() => actualNoCustomerMessageText == NoCustomerMessageText);
+    }
+
+    [Test]
+    public async Task IncorrectLoginTest()
+    {
+        //Arrange
+        var startPage = new StartPage(_webDriver!);
+        var loginPage = startPage.GoToLoginPage();
+
+        //Act
+        loginPage.SetEmail(ExistingEmail);
+        loginPage.SetPassword(IncorrectPassword);
+        loginPage.ClickRememberMeCheckBox();
+        await Task.Delay(TimeSpan.FromSeconds(2));
+        loginPage.ClickLoginButton();
+        await Task.Delay(TimeSpan.FromSeconds(2));
+
+        var actualUnsuccessMessageText = loginPage.GetUnsuccessLoginMessage();
+        var actualIncorrectMessageTest = loginPage.GetIncorrectCredentialsMessage();
+
+        //Assert
+        Assert.That(() => actualUnsuccessMessageText == UnsuccessMessageText);
+        Assert.That(() => actualIncorrectMessageTest == IncorrectCredentialsMessageText);
     }
 }
