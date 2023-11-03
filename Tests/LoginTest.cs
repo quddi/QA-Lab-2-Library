@@ -7,7 +7,6 @@ public class LoginTest : BaseTest
 {
     private const string ExistingEmail = "nyqug9@yahoo.com";
     private const string ExistingPassword = "extbp6";
-    private readonly string NonExistentEmail = ExistingEmail + "_incorrect";
     private readonly string IncorrectPassword = ExistingPassword + "_incorrect";
 
     private const string UnsuccessMessageText = "Login was unsuccessful. Please correct the errors and try again.";
