@@ -10,12 +10,14 @@ public class StartPage : BasePage
     private IWebElement _registerButton; 
     private IWebElement _logInOutButton; 
     private IWebElement _emailText;
+    private IWebElement _booksButton; 
 
     public StartPage(IWebDriver driver) : base(driver) 
     {
         _registerButton = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a"));
         _logInOutButton = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a"));
         _emailText = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a"));
+        _booksButton = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[2]/ul[1]/li[1]/a"));
     }
 
     public RegistrationPage GoToRegistrationPage()
@@ -47,6 +49,13 @@ public class StartPage : BasePage
         }
 
         return null;
+    }
+
+    public BookPage GoToBookPage()
+    {
+        _booksButton.Click();
+
+        return new BookPage(_driver);
     }
 
     public string? GetEmailText()
