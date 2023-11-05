@@ -4,9 +4,7 @@ namespace PageObjects;
 
 public class CartPage : BasePage
 {
-    public CartPage(IWebDriver driver) : base(driver)
-    {
-    }
+    public CartPage(IWebDriver driver) : base(driver) { }
 
     public string? GetFirstProductName()
     {

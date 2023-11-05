@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Tests.BaseTest">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAABAAAAAAAAAAAAQAAAAAAACA=</HashCode>
+      <FileName>BaseTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tests.CartTest">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <InheritanceLine Type="Tests.BaseTest" FixedFromPoint="true">
+      <Path>
+        <Point X="2" Y="1.25" />
+        <Point X="5" Y="1.25" />
+        <Point X="5" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>gAAAAAABIAAAAAAAAAIAAAAAAAAAABAACAAAAAAAAAA=</HashCode>
+      <FileName>CartTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tests.Extensions">
+    <Position X="9.5" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAEQAAAAAIAACAAAABAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Extensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tests.LoginTest">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <InheritanceLine Type="Tests.BaseTest" FixedFromPoint="true">
+      <Path>
+        <Point X="2" Y="1.25" />
+        <Point X="3.25" Y="1.25" />
+        <Point X="3.25" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>oAAAAAAAACAgAAAAAIIAAAAABAAAAAAAAAAAgAAAAEA=</HashCode>
+      <FileName>LoginTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tests.LogoutTest">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <InheritanceLine Type="Tests.BaseTest" FixedFromPoint="true">
+      <Path>
+        <Point X="2" Y="1.25" />
+        <Point X="8.5" Y="1.25" />
+        <Point X="8.5" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAIAAAAAAAAAAIAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>LogoutTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tests.RegistrationTest">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <InheritanceLine Type="Tests.BaseTest" FixedFromPoint="true">
+      <Path>
+        <Point X="2" Y="1.25" />
+        <Point X="6.75" Y="1.25" />
+        <Point X="6.75" Y="1.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>hAAAAAAAAEAAAAAAAAAEAAAAAAAAABAAAAAAAAEAAAA=</HashCode>
+      <FileName>RegistrationTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
