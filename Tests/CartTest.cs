@@ -23,7 +23,7 @@ public class CartTest : BaseTest
     }
 
     [Test]
-    public async Task LogoutFromStartPageTest()
+    public async Task OneProductTest()
     {
         //Arrange
         var loggedInStartPage = await LogIn();
@@ -48,5 +48,38 @@ public class CartTest : BaseTest
         //Assert
         Assert.That(() => actualSelectingSuccessMessage == SuccessMessage);
         Assert.That(() => selectedProductName == actualProductName);
+    }
+
+    [Test]
+    public async Task TwoProductsTest()
+    {
+        //Arrange
+        var loggedInStartPage = await LogIn();
+
+        //Act
+        var booksPage = loggedInStartPage.GoToBookPage();
+        booksPage.ScrollBy(0, 200);
+
+        var firstSelectedProductName = booksPage.GetFirstProductName();
+        var secondSelectedProductName = booksPage.GetSecondProductName();
+
+        booksPage.ClickSelectFirstProductButton();
+        await Task.Delay(TimeSpan.FromSeconds(0.5));
+        booksPage.ClickSelectSecondProductButton();
+
+        await Task.Delay(TimeSpan.FromSeconds(0.5));
+
+        var actualSelectingSuccessMessage = booksPage.GetSelectingSuccessMessage();
+
+        booksPage.ScrollBy(0, -200);
+        var cartPage = booksPage.GoToCartPage();
+
+        var actualFirstProductName = cartPage.GetFirstProductName();
+        var actualSecondProductName = cartPage.GetSecondProductName();
+
+        //Assert
+        Assert.That(() => actualSelectingSuccessMessage == SuccessMessage);
+        Assert.That(() => firstSelectedProductName == actualFirstProductName);
+        Assert.That(() => secondSelectedProductName == actualSecondProductName);
     }
 }

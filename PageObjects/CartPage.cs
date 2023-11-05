@@ -21,4 +21,18 @@ public class CartPage : BasePage
             return null; 
         }
     }
+    
+    public string? GetSecondProductName()
+    {
+        try
+        {
+            var element = _driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[4]/div/div/div[2]/div/form/table/tbody/tr[2]/td[3]/a"));
+
+            return element.Text;
+        }
+        catch 
+        { 
+            return null; 
+        }
+    }
 }
